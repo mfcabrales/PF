@@ -1,0 +1,8 @@
+<div *ngIf = "competitorsNgrx | async as competitors">
+    <div *ngFor = "let competitor of competitors; let i = index; let last = last">
+        <label>{{i+1}}</label><input id="nickname" maxlength="40" type="text" [(ngModel)]="competitor._name">
+    </div>
+    <div>
+        <input type="button" value="add" (click)="addCompetitor()">
+    </div>
+</div>

@@ -2,28 +2,25 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
-import {HeroesComponent} from "./hero/hero.component";
 import { StoreModule } from '@ngrx/store';
-import { heroesReducer } from './reducers/heroes.reducer';
 import { RouterModule, Routes} from '@angular/router';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { HeroListComponent } from './hero-list/hero-list.component';
 import { FormsModule } from '@angular/forms';
-import {HeroListService} from "./hero-list/hero-list.service";
+import {IndexComponent} from "./components/index/index.component";
+import {CompetitorsComponent} from "./components/competitors/competitors.component";
+import {CompetitorReducer} from "./reducers/competitors.reducer";
 
 
 const appRoutes: Routes = [
     {
-        path: 'heroesList',
-        component: HeroListComponent
+        path: 'competitors',
+        component: CompetitorsComponent
+    },{
+        path: 'index',
+        component: IndexComponent
     },
     {
-        path: 'heroDetail/:index',
-        component: HeroDetailComponent
-    },
-    { 
         path: '**',
-        redirectTo: '/heroesList',
+        redirectTo: '/index',
         pathMatch: 'full'
     }
 ];
@@ -35,16 +32,14 @@ const appRoutes: Routes = [
         BrowserModule,
         HttpClientModule,
         FormsModule,
-        StoreModule.forRoot({heroes: heroesReducer})
+        StoreModule.forRoot({competitors: CompetitorReducer})
     ],
     declarations: [
         AppComponent,
-        HeroesComponent,
-        HeroDetailComponent,
-        HeroListComponent
+        IndexComponent,
+        CompetitorsComponent
     ],
-    bootstrap: [AppComponent],
-    providers: [HeroListService]
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }
