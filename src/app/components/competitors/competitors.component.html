@@ -1,8 +1,40 @@
 <div *ngIf = "competitorsNgrx | async as competitors">
-    <div *ngFor = "let competitor of competitors; let i = index; let last = last">
-        <label>{{i+1}}</label><input id="nickname" maxlength="40" type="text" [(ngModel)]="competitor._name">
+    <div class = "competitors-row">
+        <div class = "competitors-item">No</div>
+        <div class = "competitors-item">Nombre</div>
+        <div class = "competitors-item">Amarillas</div>
+        <div class = "competitors-item">Amarillas Pagadas</div>
+        <div class = "competitors-item">Rojas</div>
+        <div class = "competitors-item">Rojas Pagadas</div>
+        <div class = "competitors-item">W</div>
+        <div class = "competitors-item">W Pagadas</div>
+        <div class = "competitors-item">Debe</div>
+        <div class = "competitors-item">Pago</div>
+    </div>
+    <div class = "competitors-row"
+         *ngFor = "let competitor of competitors; let i = index; let last = last">
+        <div class = "competitors-item">{{i+1}}</div>
+        <div class = "competitors-item">
+            <input id = "nickname"
+                   maxlength = "40"
+                   type = "text"
+                   (blur) = "competitor._name = competitor._name.toUpperCase(); orderCompetitors()"
+                   [(ngModel)] = "competitor._name">
+        </div>
+        <div class = "competitors-item">
+            <input type = "number"
+                   [(ngModel)] = "competitor._yellow"></div>
+        <div class = "competitors-item"></div>
+        <div class = "competitors-item">2</div>
+        <div class = "competitors-item">2</div>
+        <div class = "competitors-item"></div>
+        <div class = "competitors-item"></div>
+        <div class = "competitors-item">$1000</div>
+        <div class = "competitors-item">$5000</div>
     </div>
     <div>
-        <input type="button" value="add" (click)="addCompetitor()">
+        <input type = "button"
+               value = "add"
+               (click) = "addCompetitor()">
     </div>
 </div>

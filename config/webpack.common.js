@@ -51,21 +51,25 @@ module.exports = {
         include: helpers.root('src', 'app'),
         loader: 'raw-loader'
       },
-
       {
         test: /\.scss$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader'
-          },
-          {
-            loader: 'sass-loader'
-          }
-        ]
+        exclude: /node_modules/,
+        loaders: ['raw-loader', 'sass-loader'] // sass-loader not scss-loader
       }
+      //{
+      //  test: /\.scss$/,
+      //  use: [
+      //    {
+      //      loader: 'style-loader'
+      //    },
+      //    {
+      //      loader: 'css-loader'
+      //    },
+      //    {
+      //      loader: 'sass-loader'
+      //    }
+      //  ]
+      //}
 
     ]
   },

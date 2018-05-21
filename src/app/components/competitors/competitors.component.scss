@@ -1,0 +1,16 @@
+.competitors-row
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.competitors-item
+{
+  margin: 8px;
+  width: 9.090909%;
+  input
+  {
+    width: 100%;
+    text-transform: uppercase;
+  }
+}

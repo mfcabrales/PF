@@ -8,7 +8,8 @@ import * as CompetitorActions from '../../reducers/competitors.actions';
 
 @Component({
     selector: 'competitors',
-    templateUrl: './competitors.component.html'
+    templateUrl: './competitors.component.html',
+    styleUrls: ['./competitors.component.scss']
 })
 export class CompetitorsComponent implements OnInit {
 
@@ -22,19 +23,34 @@ export class CompetitorsComponent implements OnInit {
         this.competitorsNgrx = this.store.select('competitors');
         this.competitorsNgrx.subscribe(result => {
             if (result.length === 0) {
-                let preCharge : Competitor[];
+                let preCharge: Competitor[];
                 preCharge = [
                     {
-                        _name : 'name'
-                    },
-                    {
-                        _name : 'Manuel Cabrales - Jaime Andres Carvajal'
+                        _name: 'MANUEL',
+                        _yellow: 0
                     }
                 ];
                 this.store.dispatch(new CompetitorActions.AddAll(preCharge))
             }
+            else
+            {
+                result.sort((a, b) => {
+                    if (a._name < b._name) return -1;
+                    else if (a._name > b._name) return 1;
+                    else return 0;
+                });
+            }
         });
+    }
 
+    orderCompetitors() {
+        this.competitorsNgrx.subscribe(result => {
+            result.sort((a, b) => {
+                if (a._name < b._name) return -1;
+                else if (a._name > b._name) return 1;
+                else return 0;
+            });
+        });
     }
 
     addCompetitor() {
