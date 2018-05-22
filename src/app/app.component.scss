@@ -1,0 +1,15 @@
+.app-container
+{
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.menu
+{
+  margin-bottom: 16px;
+  display: flex;
+  flex-flow: row wrap;
+  a {
+    margin: 8px;
+  }
+}

@@ -4,6 +4,7 @@ import {Observable} from "rxjs/Observable";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../commons/AppState";
 import * as CompetitorActions from '../../reducers/competitors.actions';
+import {Fees} from "../../commons/Fees";
 
 
 @Component({
@@ -14,6 +15,7 @@ import * as CompetitorActions from '../../reducers/competitors.actions';
 export class CompetitorsComponent implements OnInit {
 
     competitorsNgrx: Observable<Competitor[]>;
+    fees: Observable<Fees>;
 
     constructor(private store: Store<AppState>) {
     }
@@ -21,19 +23,24 @@ export class CompetitorsComponent implements OnInit {
     ngOnInit() {
         // this.competitorsNgrx = this.store.select(state => state.competitors);
         this.competitorsNgrx = this.store.select('competitors');
+        this.fees = this.store.select('fees');
+        // this.fees.subscribe(result => {
+        //     var algo = result._registrationFee;
+        // });
         this.competitorsNgrx.subscribe(result => {
             if (result.length === 0) {
                 let preCharge: Competitor[];
                 preCharge = [
-                    {
-                        _name: 'MANUEL',
-                        _yellow: 0
-                    }
+                    // {
+                    //     _name: 'MANUEL',
+                    //     _yellow: 0
+                    // }
                 ];
-                this.store.dispatch(new CompetitorActions.AddAll(preCharge))
+                if (preCharge.length > 0) {
+                    this.store.dispatch(new CompetitorActions.AddAll(preCharge))
+                }
             }
-            else
-            {
+            else {
                 result.sort((a, b) => {
                     if (a._name < b._name) return -1;
                     else if (a._name > b._name) return 1;
@@ -54,6 +61,21 @@ export class CompetitorsComponent implements OnInit {
     }
 
     addCompetitor() {
-        this.store.dispatch(new CompetitorActions.Add(<Competitor> {_name: ''}));
+        this.store.dispatch(new CompetitorActions.Add(new Competitor()));
+    }
+
+    calculateData(user: Competitor) {
+        //forkJoin( para multiples subscribes de obserbables
+        this.fees.subscribe(fe => {
+            user._ows = (user._yellow * fe._yellowFee) +
+                (user._red * fe._redFee) +
+                (user._w * fe._wFee) +
+                fe._registrationFee;
+            user._paid = (user._paidYellow * fe._yellowFee) +
+                (user._paidRed * fe._redFee) +
+                (user._paidW * fe._wFee) +
+                (user._registration ? fe._registrationFee : 0);
+            user._ows = user._ows - user._paid;
+        });
     }
 }

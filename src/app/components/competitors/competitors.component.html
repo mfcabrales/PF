@@ -8,6 +8,7 @@
         <div class = "competitors-item">Rojas Pagadas</div>
         <div class = "competitors-item">W</div>
         <div class = "competitors-item">W Pagadas</div>
+        <div class = "competitors-item">Inscripción</div>
         <div class = "competitors-item">Debe</div>
         <div class = "competitors-item">Pago</div>
     </div>
@@ -18,19 +19,47 @@
             <input id = "nickname"
                    maxlength = "40"
                    type = "text"
-                   (blur) = "competitor._name = competitor._name.toUpperCase(); orderCompetitors()"
+                   (blur) = "competitor._name = competitor._name.toUpperCase(); calculateData(competitor); orderCompetitors()"
                    [(ngModel)] = "competitor._name">
         </div>
         <div class = "competitors-item">
             <input type = "number"
+                   (blur) = "calculateData(competitor)"
                    [(ngModel)] = "competitor._yellow"></div>
-        <div class = "competitors-item"></div>
-        <div class = "competitors-item">2</div>
-        <div class = "competitors-item">2</div>
-        <div class = "competitors-item"></div>
-        <div class = "competitors-item"></div>
-        <div class = "competitors-item">$1000</div>
-        <div class = "competitors-item">$5000</div>
+        <div class = "competitors-item">
+            <input type = "number"
+                   (blur) = "calculateData(competitor)"
+                   [(ngModel)] = "competitor._paidYellow"></div>
+        <div class = "competitors-item">
+            <input type = "number"
+                   (blur) = "calculateData(competitor)"
+                   [(ngModel)] = "competitor._red"></div>
+        <div class = "competitors-item">
+            <input type = "number"
+                   (blur) = "calculateData(competitor)"
+                   [(ngModel)] = "competitor._paidRed">
+        </div>
+        <div class = "competitors-item">
+            <input type = "number"
+                   (blur) = "calculateData(competitor)"
+                   [(ngModel)] = "competitor._w">
+        </div>
+        <div class = "competitors-item">
+            <input type = "number"
+                   (blur) = "calculateData(competitor)"
+                   [(ngModel)] = "competitor._paidW">
+        </div>
+        <div class = "competitors-item">
+            <input type = "checkbox"
+                   (change) = "calculateData(competitor)"
+                   [(ngModel)] = "competitor._registration">
+        </div>
+        <div class = "competitors-item">
+            ${{competitor._ows}}
+        </div>
+        <div class = "competitors-item">
+            ${{competitor._paid}}
+        </div>
     </div>
     <div>
         <input type = "button"
@@ -38,3 +67,4 @@
                (click) = "addCompetitor()">
     </div>
 </div>
+

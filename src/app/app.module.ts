@@ -5,22 +5,19 @@ import {AppComponent} from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { RouterModule, Routes} from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import {IndexComponent} from "./components/index/index.component";
 import {CompetitorsComponent} from "./components/competitors/competitors.component";
 import {CompetitorReducer} from "./reducers/competitors.reducer";
+import {FeesReducer} from "./reducers/fees.reducer";
 
 
 const appRoutes: Routes = [
     {
         path: 'competitors',
         component: CompetitorsComponent
-    },{
-        path: 'index',
-        component: IndexComponent
     },
     {
         path: '**',
-        redirectTo: '/index',
+        redirectTo: '/competitors',
         pathMatch: 'full'
     }
 ];
@@ -32,11 +29,12 @@ const appRoutes: Routes = [
         BrowserModule,
         HttpClientModule,
         FormsModule,
-        StoreModule.forRoot({competitors: CompetitorReducer})
+        StoreModule.forRoot({
+            competitors: CompetitorReducer,
+            fees: FeesReducer})
     ],
     declarations: [
         AppComponent,
-        IndexComponent,
         CompetitorsComponent
     ],
     bootstrap: [AppComponent]
