@@ -1,6 +1,11 @@
 <div class = "app-container">
     <div class="menu">
         <a routerLink="/competitors" routerLinkActive="active">Participantes</a>
+
+
+        <input type = "button"
+               value = "Sync"
+               (click) = "syncData()">
     </div>
     <router-outlet></router-outlet>
 </div>

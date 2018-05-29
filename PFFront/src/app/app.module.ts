@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import {CompetitorsComponent} from "./components/competitors/competitors.component";
 import {CompetitorReducer} from "./reducers/competitors.reducer";
 import {FeesReducer} from "./reducers/fees.reducer";
+import {ApiService} from "./services/api.service";
 
 
 const appRoutes: Routes = [
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
         AppComponent,
         CompetitorsComponent
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    providers: [ApiService]
 })
 export class AppModule {
 }
