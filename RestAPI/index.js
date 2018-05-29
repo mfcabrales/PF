@@ -35,7 +35,6 @@ app.listen(port, "localhost", function (err) {
         // res.setHeader('Access-Control-Allow-Credentials', true); // If needed
         var fs = require('fs');
         fs.writeFile('myjsonfile.json', JSON.stringify(req.body), 'utf8');
-        console.log(req.body);
         res.sendStatus(201);
         // next();
     });

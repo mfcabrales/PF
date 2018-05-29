@@ -1,1 +1,1 @@
-{"name":"hola5000"}
+{"fees":{"_registrationFee":5000,"_yellowFee":1000,"_redFee":2000,"_wFee":1000},"competitors":[{"_name":"AURELIO","_yellow":0,"_paidYellow":0,"_red":1,"_paidRed":0,"_w":0,"_paidW":0,"_registration":false,"_ows":7000,"_paid":0},{"_name":"MANU3","_yellow":3,"_paidYellow":0,"_red":0,"_paidRed":0,"_w":0,"_paidW":0,"_registration":true,"_ows":3000,"_paid":5000}]}

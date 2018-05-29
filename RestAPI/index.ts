@@ -45,7 +45,6 @@ app.listen(port, "localhost", function (err: any) {
 
         var fs = require('fs');
         fs.writeFile('myjsonfile.json', JSON.stringify(req.body), 'utf8');
-        console.log(req.body);
         res.sendStatus(201);
         // next();
     });

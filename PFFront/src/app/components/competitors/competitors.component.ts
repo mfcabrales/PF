@@ -28,25 +28,13 @@ export class CompetitorsComponent implements OnInit {
         //     var algo = result._registrationFee;
         // });
         this.competitorsNgrx.subscribe(result => {
-            if (result.length === 0) {
-                let preCharge: Competitor[];
-                preCharge = [
-                    // {
-                    //     _name: 'MANUEL',
-                    //     _yellow: 0
-                    // }
-                ];
-                if (preCharge.length > 0) {
-                    this.store.dispatch(new CompetitorActions.AddAll(preCharge))
-                }
-            }
-            else {
-                result.sort((a, b) => {
-                    if (a._name < b._name) return -1;
-                    else if (a._name > b._name) return 1;
-                    else return 0;
-                });
-            }
+
+            result.sort((a, b) => {
+                if (a._name < b._name) return -1;
+                else if (a._name > b._name) return 1;
+                else return 0;
+            });
+
         });
     }
 
